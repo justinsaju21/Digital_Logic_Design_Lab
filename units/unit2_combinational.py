@@ -426,12 +426,6 @@ def run_experiment_5(tutor):
             "hint": "The middle segment (g) is OFF for zero."
         },
         {
-            "title": "Verify Binary Encoding",
-            "instruction": "Confirm the Binary (BCD) shows **0000**. This 4-bit code is the input to the decoder circuit.",
-            "criteria": lambda c: c.get('decimal') == 0 and c.get('binary') == '0000',
-            "success_msg": "✓ BCD verified: 0₁₀ = 0000₂. The decoder translates this binary code to segment patterns.",
-        },
-        {
             "title": "Micro-Experiment 2: Display ONE",
             "instruction": "Set to **1**. Notice which segments light up. '1' uses the fewest segments!",
             "criteria": lambda c: c.get('decimal') == 1,
@@ -443,12 +437,6 @@ def run_experiment_5(tutor):
             "criteria": lambda c: c.get('decimal') == 8,
             "success_msg": "✓ Eight displayed with ALL segments lit! This tests that every LED is working.",
             "hint": "8 is used in manufacturing to test displays because it activates every segment."
-        },
-        {
-            "title": "Verify Binary for 8",
-            "instruction": "Confirm Binary shows **1000** (MSB is HIGH, others LOW). This is the BCD encoding for 8.",
-            "criteria": lambda c: c.get('decimal') == 8 and c.get('binary') == '1000',
-            "success_msg": "✓ BCD verified: 8₁₀ = 1000₂ (binary 8).",
         },
         {
             "title": "Micro-Experiment 4: Tricky Digit FIVE",
