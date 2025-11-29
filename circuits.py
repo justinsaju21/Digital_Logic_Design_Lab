@@ -177,9 +177,9 @@ def draw_seven_segment(value):
     Draws a 7-segment display showing the decimal value.
     value: int (0-9)
     """
-    fig, ax = plt.subplots(figsize=(4, 6), facecolor='none')
-    ax.set_xlim(0, 6)
-    ax.set_ylim(0, 10)
+    fig, ax = plt.subplots(figsize=(4, 7), facecolor='none')
+    ax.set_xlim(-1, 7)
+    ax.set_ylim(-1, 11)
     ax.axis('off')
     
     # Segment definitions (x, y, width, height) - simplified as rectangles

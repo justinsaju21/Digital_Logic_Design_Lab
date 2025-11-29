@@ -566,7 +566,7 @@ def run_experiment_5(tutor):
     
     **Implementation Methods:**
     1. **Combinational Logic**: Design using K-maps for each segment
-       - Example: Segment 'a' = D₀' + D₂ + (D₁ · D₃)
+       - Example: Segment 'a' = D₃ + D₁ + (D₂ · D₀) + (D₂' · D₀')
     2. **ROM/LUT**: 16-word lookup table (stores pattern for each digit)
     3. **Decoder IC**: Pre-fabricated chips (e.g., 7447, CD4511)
     
