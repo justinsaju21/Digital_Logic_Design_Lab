@@ -14,11 +14,11 @@ st.set_page_config(
 apply_lab_style()
 
 # Sidebar Navigation
-st.sidebar.image("logo.png", width=120)
-st.sidebar.markdown("### 🔌 Digital Logic Lab")
+# Sidebar Navigation
+st.sidebar.title("🔌 Digital Logic Lab")
 st.sidebar.markdown("---")
 
-menu = st.sidebar.radio(
+menu = st.sidebar.selectbox(
     "Select Unit:",
     [
         "Home",
@@ -41,6 +41,10 @@ if st.sidebar.button("🗑️ Reset All Progress", help="Clear all experiment pr
 
 # Main Routing
 if menu == "Home":
+    col1, col2, col3 = st.columns([1, 1, 1])
+    with col2:
+        st.image("logo.png", use_container_width=True)
+        
     st.markdown("""
     <div style='text-align: center; padding: 3rem 0 2rem 0;'>
         <h1 style='font-size: 4rem; background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%); 
