@@ -236,6 +236,7 @@ def run_experiment_1(tutor):
     def wrapped_simulation():
         ctx = simulation()
         st.session_state.u1_ex1_ctx = ctx
+        return ctx
         
     render_experiment_layout(
         "Experiment 1: Logic Gate Analysis", 
@@ -409,6 +410,7 @@ def run_experiment_2(tutor):
     def wrapped_sim():
         ctx = simulation()
         st.session_state.u1_ex2_ctx = ctx
+        return ctx
     
     render_experiment_layout("Experiment 2: Boolean Algebra & K-Map", theory, wrapped_sim, tutor,
                              tutor_unit_id="u1_ex2", tutor_steps_config=tutor_config, tutor_context=st.session_state.u1_ex2_ctx)
