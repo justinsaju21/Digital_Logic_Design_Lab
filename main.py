@@ -14,9 +14,15 @@ st.set_page_config(
 apply_lab_style()
 
 # Sidebar Navigation
-st.sidebar.markdown("### 🔌 Digital Logic Lab")
-st.sidebar.markdown("---")
+# Sidebar Navigation
+st.sidebar.markdown("""
+    <div style='display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;'>
+        <div style='font-size: 1.5rem;'>🔌</div>
+        <div style='font-weight: 700; font-size: 1.1rem; color: #f8fafc;'>Digital Logic Lab</div>
+    </div>
+""", unsafe_allow_html=True)
 
+st.sidebar.caption("NAVIGATION")
 menu = st.sidebar.selectbox(
     "Select Unit:",
     [
@@ -26,12 +32,17 @@ menu = st.sidebar.selectbox(
         "Unit 3: Sequential Circuits",
         "Unit 4: Advanced Logic",
         "Unit 5: PLDs & Memory"
-    ]
+    ],
+    label_visibility="collapsed"
 )
 
 # Sidebar Footer
 st.sidebar.markdown("---")
-st.sidebar.caption("v1.0.0 | Virtual Digital Logic Lab")
+st.sidebar.markdown("""
+    <div style='text-align: center; color: #64748b; font-size: 0.8rem; margin-bottom: 1rem;'>
+        v1.0.0 • Virtual Lab
+    </div>
+""", unsafe_allow_html=True)
 
 if st.sidebar.button("🗑️ Reset All Progress", help="Clear all experiment progress and start over"):
     for key in list(st.session_state.keys()):
