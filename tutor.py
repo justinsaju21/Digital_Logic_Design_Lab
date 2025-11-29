@@ -84,10 +84,13 @@ class SmartTutor:
             st.success(step.get("success_msg", "Correct! Proceeding to next step..."))
             
             # Auto-advance or Manual Next
-            if st.button("Next Step ➡️", key=f"next_{unit_id}_{current_step_idx}", type="primary"):
-                self.mark_step_complete(unit_id)
-                st.balloons() # Animation as requested
-                st.rerun()
+            # Auto-advance or Manual Next
+            st.button("Next Step ➡️", 
+                     key=f"next_{unit_id}_{current_step_idx}", 
+                     type="primary",
+                     on_click=self.mark_step_complete,
+                     args=(unit_id,)
+            )
         else:
             st.markdown("---")
             st.caption("🔴 *Pending Verification... Perform the action above.*")
