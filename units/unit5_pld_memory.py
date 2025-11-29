@@ -189,6 +189,7 @@ def run_experiment_11(tutor):
     def wrapped_sim():
         ctx = simulation()
         st.session_state.u5_ex11_ctx = ctx
+        return ctx
 
     render_experiment_layout("Experiment 11: PLA/PAL Designer", theory, wrapped_sim, tutor, 
                              tutor_unit_id="u5_ex11", tutor_steps_config=tutor_config, tutor_context=st.session_state.u5_ex11_ctx)
@@ -346,6 +347,7 @@ def run_experiment_12(tutor):
     def wrapped_sim():
         ctx = simulation()
         st.session_state.u5_ex12_ctx = ctx
+        return ctx
 
     render_experiment_layout("Experiment 12: FPGA Architecture", theory, wrapped_sim, tutor, 
                              tutor_unit_id="u5_ex12", tutor_steps_config=tutor_config, tutor_context=st.session_state.u5_ex12_ctx)

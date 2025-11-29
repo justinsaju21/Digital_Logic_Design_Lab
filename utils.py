@@ -528,7 +528,10 @@ def render_experiment_layout(title, theory_content, simulation_func, tutor=None,
         tab_sim, tab_theory = st.tabs(["🔬 Simulation", "📖 Theory"])
         
         with tab_sim:
-            simulation_func()
+            # Capture the context returned by the simulation
+            sim_context = simulation_func()
+            if sim_context is not None:
+                tutor_context = sim_context
             
         with tab_theory:
             st.markdown(theory_content)

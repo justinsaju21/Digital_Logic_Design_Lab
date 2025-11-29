@@ -175,6 +175,7 @@ def run_experiment_6(tutor):
     def wrapped_sim():
         ctx = simulation()
         st.session_state.u3_ex6_ctx = ctx
+        return ctx
 
     render_experiment_layout("Experiment 6: Flip-Flop Fundamentals", theory, wrapped_sim, tutor, 
                              tutor_unit_id="u3_ex6", tutor_steps_config=tutor_config, tutor_context=st.session_state.u3_ex6_ctx)
@@ -330,6 +331,7 @@ def run_experiment_7(tutor):
     def wrapped_sim():
         ctx = simulation()
         st.session_state.u3_ex7_ctx = ctx
+        return ctx
 
     render_experiment_layout("Experiment 7: Shift Registers", theory, wrapped_sim, tutor, 
                              tutor_unit_id="u3_ex7", tutor_steps_config=tutor_config, tutor_context=st.session_state.u3_ex7_ctx)
@@ -497,6 +499,7 @@ def run_experiment_8(tutor):
     def wrapped_sim():
         ctx = simulation()
         st.session_state.u3_ex8_ctx = ctx
+        return ctx
 
     render_experiment_layout("Experiment 8: Counters", theory, wrapped_sim, tutor, 
                              tutor_unit_id="u3_ex8", tutor_steps_config=tutor_config, tutor_context=st.session_state.u3_ex8_ctx)

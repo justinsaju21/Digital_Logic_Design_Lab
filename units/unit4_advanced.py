@@ -206,6 +206,7 @@ def run_experiment_9(tutor):
     def wrapped_sim():
         ctx = simulation()
         st.session_state.u4_ex9_ctx = ctx
+        return ctx
 
     render_experiment_layout("Experiment 9: Sequence Detector (FSM)", theory, wrapped_sim, tutor, 
                              tutor_unit_id="u4_ex9", tutor_steps_config=tutor_config, tutor_context=st.session_state.u4_ex9_ctx)
@@ -349,6 +350,7 @@ def run_experiment_10(tutor):
     def wrapped_sim():
         ctx = simulation()
         st.session_state.u4_ex10_ctx = ctx
+        return ctx
 
     render_experiment_layout("Experiment 10: Vending Machine", theory, wrapped_sim, tutor, 
                              tutor_unit_id="u4_ex10", tutor_steps_config=tutor_config, tutor_context=st.session_state.u4_ex10_ctx)

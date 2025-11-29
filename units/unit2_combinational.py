@@ -585,6 +585,7 @@ def run_experiment_5(tutor):
     def wrapped_sim():
         ctx = simulation()
         st.session_state.u2_ex5_ctx = ctx
+        return ctx
 
     render_experiment_layout("Experiment 5: Code Converters", theory, wrapped_sim, tutor, 
                              tutor_unit_id="u2_ex5", tutor_steps_config=tutor_config, tutor_context=st.session_state.u2_ex5_ctx)
