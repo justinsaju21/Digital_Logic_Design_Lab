@@ -60,25 +60,45 @@ if menu == "Home":
     # Enhanced Global Progress with Stats
     tutor = SmartTutor()
     
-    # Count progress from both new (tutor_state) and legacy (tutor_progress)
-    total_experiments = 12
+    # Total steps for each experiment (must match tutor_config lengths)
+    EXPERIMENT_STEPS = {
+        "u1_ex1": 12, "u1_ex2": 10,
+        "u2_ex3": 12, "u2_ex4": 10, "u2_ex5": 10,
+        "u3_ex6": 8,  "u3_ex7": 8,  "u3_ex8": 9,
+        "u4_ex9": 10, "u4_ex10": 10,
+        "u5_ex11": 10, "u5_ex12": 9
+    }
     
-    # New state tracker (unit_id keys)
-    new_state_completions = 0
-    experiment_ids = ["u1_ex1", "u1_ex2", "u2_ex3", "u2_ex4", "u2_ex5", 
-                      "u3_ex6", "u3_ex7", "u3_ex8", "u4_ex9", "u4_ex10", 
-                      "u5_ex11", "u5_ex12"]
+    total_experiments = len(EXPERIMENT_STEPS)
+    completed_count = 0
     
-    for exp_id in experiment_ids:
-        if exp_id in st.session_state.tutor_state:
-            # Get the expected total steps for each experiment
-            # If current_step >= total_steps, it's complete
-            # For simplicity, we'll assume if the key exists and step > 0, there's progress
-            pass
+    # Calculate Per-Unit Progress
+    unit_progress = {
+        "Unit 1": {"completed": 0, "total": 2},
+        "Unit 2": {"completed": 0, "total": 3},
+        "Unit 3": {"completed": 0, "total": 3},
+        "Unit 4": {"completed": 0, "total": 2},
+        "Unit 5": {"completed": 0, "total": 2}
+    }
     
-    # Legacy progress tracker
-    completed_count = len([k for k, v in st.session_state.tutor_progress.items() if v])
-    progress = completed_count / total_experiments
+    # Map experiment IDs to Units
+    exp_to_unit = {
+        "u1_ex1": "Unit 1", "u1_ex2": "Unit 1",
+        "u2_ex3": "Unit 2", "u2_ex4": "Unit 2", "u2_ex5": "Unit 2",
+        "u3_ex6": "Unit 3", "u3_ex7": "Unit 3", "u3_ex8": "Unit 3",
+        "u4_ex9": "Unit 4", "u4_ex10": "Unit 4",
+        "u5_ex11": "Unit 5", "u5_ex12": "Unit 5"
+    }
+    
+    for exp_id, total_steps in EXPERIMENT_STEPS.items():
+        current_step = tutor.get_current_step(exp_id)
+        # Check if completed (current step index >= total steps)
+        if current_step >= total_steps:
+            completed_count += 1
+            unit_name = exp_to_unit[exp_id]
+            unit_progress[unit_name]["completed"] += 1
+            
+    progress = completed_count / total_experiments if total_experiments > 0 else 0
     
     st.markdown("---")
     
@@ -146,46 +166,56 @@ if menu == "Home":
     
     st.markdown("---")
 
-    # Unit Cards
+    # Unit Cards with Progress
     st.markdown("""
     <h2 style='color: #60a5fa; margin-bottom: 2rem;'>📚 Course Curriculum</h2>
     """, unsafe_allow_html=True)
     
     col1, col2, col3 = st.columns(3)
     
+    # Helper to generate progress bar HTML
+    def get_unit_progress_html(unit_name, color):
+        p = unit_progress[unit_name]
+        pct = (p['completed'] / p['total']) * 100 if p['total'] > 0 else 0
+        return f"""
+        <div style='margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1);'>
+            <div style='display: flex; justify-content: space-between; margin-bottom: 0.25rem;'>
+                <span style='color: {color}; font-size: 0.85rem; font-weight: 600;'>{p['completed']}/{p['total']} Completed</span>
+                <span style='color: {color}; font-size: 0.85rem; font-weight: 600;'>{int(pct)}%</span>
+            </div>
+            <div style='width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px;'>
+                <div style='width: {pct}%; height: 100%; background: {color}; border-radius: 3px; transition: width 0.5s;'></div>
+            </div>
+        </div>
+        """
+    
     with col1:
-        st.markdown("""
+        st.markdown(f"""
         <div class='lab-box' style='background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(37, 99, 235, 0.15) 100%); 
                     border: 1px solid rgba(59, 130, 246, 0.3); transition: all 0.3s;'>
             <h3 style='color: #60a5fa; margin-top: 0;'>🔌 Unit 1: Basics</h3>
             <p style='color: #94a3b8; font-size: 0.95rem; line-height: 1.6;'>Logic Gates, Boolean Algebra, K-Map Minimization</p>
-            <div style='margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(59, 130, 246, 0.2);'>
-                <span style='color: #60a5fa; font-size: 0.85rem; font-weight: 600;'>2 Experiments</span>
-            </div>
+            {get_unit_progress_html("Unit 1", "#60a5fa")}
         </div>
         """, unsafe_allow_html=True)
         
     with col2:
-        st.markdown("""
+        st.markdown(f"""
         <div class='lab-box' style='background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(124, 58, 237, 0.15) 100%); 
                     border: 1px solid rgba(139, 92, 246, 0.3); transition: all 0.3s;'>
             <h3 style='color: #a78bfa; margin-top: 0;'>⚙️ Unit 2: Combinational</h3>
             <p style='color: #94a3b8; font-size: 0.95rem; line-height: 1.6;'>Adders, Mux/Demux, Code Converters</p>
-            <div style='margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(139, 92, 246, 0.2);'>
-                <span style='color: #a78bfa; font-size: 0.85rem; font-weight: 600;'>3 Experiments</span>
-            </div>
+            {get_unit_progress_html("Unit 2", "#a78bfa")}
         </div>
         """, unsafe_allow_html=True)
         
     with col3:
-        st.markdown("""
+        st.markdown(f"""
         <div class='lab-box' style='background: linear-gradient(135deg, rgba(236, 72, 153, 0.15) 0%, rgba(219, 39, 119, 0.15) 100%); 
                     border: 1px solid rgba(236, 72, 153, 0.3); transition: all 0.3s;'>
             <h3 style='color: #ec4899; margin-top: 0;'>🔄 Unit 3: Sequential</h3>
             <p style='color: #94a3b8; font-size: 0.95rem; line-height: 1.6;'>Flip-Flops, Shift Registers, Counters</p>
-            <div style='margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(236, 72, 153, 0.2);'>
-                <span style='color: #ec4899; font-size: 0.85rem; font-weight: 600;'>3 Experiments</span>
-            </div>
+            {get_unit_progress_html("Unit 3", "#ec4899")}
         </div>
         """, unsafe_allow_html=True)
         
@@ -193,26 +223,22 @@ if menu == "Home":
     
     col4, col5 = st.columns([1, 1])
     with col4:
-         st.markdown("""
+         st.markdown(f"""
         <div class='lab-box' style='background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(22, 163, 74, 0.15) 100%); 
                     border: 1px solid rgba(34, 197, 94, 0.3); transition: all 0.3s;'>
             <h3 style='color: #22c55e; margin-top: 0;'>🧩 Unit 4: Advanced</h3>
             <p style='color: #94a3b8; font-size: 0.95rem; line-height: 1.6;'>FSM Design, State Machines, Real-world Controllers</p>
-            <div style='margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(34, 197, 94, 0.2);'>
-                <span style='color: #22c55e; font-size: 0.85rem; font-weight: 600;'>2 Experiments</span>
-            </div>
+            {get_unit_progress_html("Unit 4", "#22c55e")}
         </div>
         """, unsafe_allow_html=True)
          
     with col5:
-         st.markdown("""
+         st.markdown(f"""
         <div class='lab-box' style='background: linear-gradient(135deg, rgba(251, 191, 36, 0.15) 0%, rgba(245, 158, 11, 0.15) 100%); 
                     border: 1px solid rgba(251, 191, 36, 0.3); transition: all 0.3s;'>
             <h3 style='color: #f59e0b; margin-top: 0;'>💾 Unit 5: PLDs & Memory</h3>
             <p style='color: #94a3b8; font-size: 0.95rem; line-height: 1.6;'>PLA/PAL, FPGA Architecture, Programmable Logic</p>
-            <div style='margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(251, 191, 36, 0.2);'>
-                <span style='color: #f59e0b; font-size: 0.85rem; font-weight: 600;'>2 Experiments</span>
-            </div>
+            {get_unit_progress_html("Unit 5", "#f59e0b")}
         </div>
         """, unsafe_allow_html=True)
     
