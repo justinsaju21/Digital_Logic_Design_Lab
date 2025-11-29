@@ -44,9 +44,7 @@ def run_experiment_6(tutor):
             "instruction": "Click **Pulse Clock** to trigger the flip-flop on the rising edge.",
             "criteria": lambda c: c.get('ff_type') == "SR" and c.get('s') == 1 and c.get('r') == 0 and c.get('clk_pulsed') == 1,
             "success_msg": "✓ Clock pulsed! The rising edge is when data is captured.",
-            "hint": "
-
-The clock pulse simulates a voltage transition from 0V to 5V."
+            "hint": "The clock pulse simulates a voltage transition from 0V to 5V."
         },
         {
             "title": "SET Operation: Verify State",
