@@ -136,9 +136,13 @@ def run_experiment_1(tutor):
         
         with col1:
             st.markdown("### ⚙️ Parameters")
-            gate_type = st.selectbox("Logic Gate", ["AND", "OR", "NOT", "NAND", "NOR", "XOR"], 
-                                     help="Select the logic function to analyze")
+            gate_type = st.selectbox("Select Logic Gate", ["- Select -", "AND", "OR", "NOT", "NAND", "NOR", "XOR"], 
+                                     key="gate_type", help="Select the logic function to analyze")
             
+            if gate_type == "- Select -":
+                st.info("👈 Select a Logic Gate from the dropdown to begin.")
+                return {"gate": None}
+
             st.markdown("---")
             st.markdown("#### Signal Inputs")
             

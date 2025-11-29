@@ -116,7 +116,11 @@ def run_experiment_3(tutor):
         </p>
         """, unsafe_allow_html=True)
         
-        circuit_type = st.radio("Select Circuit Type", ["Half Adder", "Full Adder"], horizontal=True)
+        circuit_type = st.selectbox("Select Circuit Type", ["- Select -", "Half Adder", "Full Adder"])
+        
+        if circuit_type == "- Select -":
+            st.info("👈 Select a Circuit Type to begin.")
+            return {"circuit_type": None}
         
         st.markdown("---")
         

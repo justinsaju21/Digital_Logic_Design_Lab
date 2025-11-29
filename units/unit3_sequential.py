@@ -81,7 +81,12 @@ def run_experiment_6(tutor):
         col1, col2 = st.columns([1, 2])
         
         with col1:
-            ff_type = st.selectbox("Flip-Flop Type", ["SR", "JK", "D", "T"])
+            ff_type = st.selectbox("Flip-Flop Type", ["- Select -", "SR", "JK", "D", "T"])
+            
+            if ff_type == "- Select -":
+                st.info("👈 Select a Flip-Flop Type to begin.")
+                return {"ff_type": None}
+
             st.markdown("---")
             
             # State management
