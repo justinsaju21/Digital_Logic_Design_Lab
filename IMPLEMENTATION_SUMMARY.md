@@ -6,7 +6,7 @@
     *   Dark mode engineering aesthetic.
     *   Interactive sidebar navigation.
     *   Enhanced Home Screen with progress dashboard and stats.
-    *   Professional circuit visualizations using `schemdraw` and `matplotlib`.
+    *   Professional circuit visualizations using `matplotlib` and `graphviz`.
 3.  **Tutor Engine (SmartTutor)**:
     *   **State-Aware Guidance**: Tracks user progress through specific steps.
     *   **Micro-Experiments**: 10-16 steps per experiment for deep engagement (~30 mins).
@@ -26,13 +26,15 @@
 -   **`circuits.py`**: Visualization logic for gates, blocks, and waveforms.
 -   **`units/`**: Individual module files containing simulation logic and tutor configurations.
 
-## 🚀 Recent Enhancements
+## 🚀 Final Polish
 -   **Consistency Audit**: All 12 experiments now follow the same rigorous structure.
 -   **Crash Prevention**: All tutor criteria use safe access methods (`.get()`) to prevent runtime errors.
 -   **Pedagogical Depth**: Every experiment includes "predict-then-verify" micro-experiments.
 -   **Visual Polish**: Improved circuit diagrams and state visualizations (Graphviz for FSMs).
+-   **Documentation**: Added `CONTRIBUTING.md` and detailed theory sections.
 
-## 📋 Next Steps
+## 🔮 Future Roadmap
 -   **User Testing**: Validate with actual students to gauge difficulty.
 -   **Performance Optimization**: Cache circuit images where possible.
 -   **Mobile Responsiveness**: Check layout on smaller screens.
+
