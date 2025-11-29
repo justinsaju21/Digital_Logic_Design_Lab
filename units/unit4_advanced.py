@@ -176,12 +176,29 @@ def run_experiment_9(tutor):
 
     theory = """
     ### Finite State Machines (FSM)
-    *   **Mealy Machine**: Output depends on Current State AND Current Input.
-    *   **Sequence Detector**: A classic application. To detect '101', we need states to remember how much of the sequence we've seen so far.
-        *   **A**: Reset / No progress.
-        *   **B**: Saw '1'.
-        *   **C**: Saw '10'.
-        *   If in C and input is '1', we have '101' -> Output 1, go to B (overlap).
+    
+    **Definition**: A computational model used to design sequential logic circuits. An FSM consists of a finite number of states, transitions, and outputs.
+    
+    **Two Main Architectures:**
+    
+    1.  **Mealy Machine**:
+        -   **Output depends on**: Current State AND Current Input.
+        -   **Characteristics**: Output can change *asynchronously* in response to input changes.
+        -   **Advantage**: Often requires fewer states.
+        -   **Diagram**: Output is written on the *transition edge* (e.g., 1/0).
+        
+    2.  **Moore Machine**:
+        -   **Output depends on**: Current State ONLY.
+        -   **Characteristics**: Output is synchronous with the state.
+        -   **Advantage**: Safer, glitch-free outputs.
+        -   **Diagram**: Output is written inside the *state bubble* (e.g., State A / Out=0).
+        
+    **Sequence Detector Design:**
+    -   To detect '101', we need states to track progress:
+    -   **State A**: Reset (seen nothing)
+    -   **State B**: Seen '1'
+    -   **State C**: Seen '10'
+    -   **Transition**: If in C and input is 1 → Sequence '101' found! Output 1.
     """
     
     if 'u4_ex9_ctx' not in st.session_state: st.session_state.u4_ex9_ctx = {}

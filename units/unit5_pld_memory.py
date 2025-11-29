@@ -159,9 +159,29 @@ def run_experiment_11(tutor):
         }
 
     theory = """
-    **Programmable Logic Devices (PLDs)** allow users to configure logic circuits.
-    *   **PLA**: Programmable AND, Programmable OR.
-    *   **PAL**: Programmable AND, Fixed OR.
+    ### Programmable Logic Devices (PLDs)
+    
+    **Concept**: Instead of wiring individual gates, PLDs contain a massive array of gates that can be "programmed" to create any logic function.
+    
+    **Architectures:**
+    1.  **PLA (Programmable Logic Array)**:
+        -   **Programmable AND Plane** + **Programmable OR Plane**.
+        -   Most flexible but slower and more expensive.
+        -   Can implement any Sum-of-Products (SOP) expression.
+        
+    2.  **PAL (Programmable Array Logic)**:
+        -   **Programmable AND Plane** + **Fixed OR Plane**.
+        -   Faster and cheaper than PLA, but less flexible.
+        -   Industry standard for simple logic glue.
+        
+    3.  **CPLD (Complex PLD)**:
+        -   Multiple PAL-like blocks connected by a programmable interconnect.
+        -   Non-volatile (keeps configuration when power is off).
+        
+    **Why use PLDs?**
+    -   **Reconfigurability**: Change logic without soldering.
+    -   **Integration**: Replace dozens of 7400-series chips with one PLD.
+    -   **Speed**: Faster than discrete gate wiring.
     """
     
     if 'u5_ex11_ctx' not in st.session_state: st.session_state.u5_ex11_ctx = {}
@@ -293,9 +313,32 @@ def run_experiment_12(tutor):
         }
 
     theory = """
-    **Field Programmable Gate Arrays (FPGAs)** are complex PLDs with thousands of configurable logic blocks.
-    *   **LUT (Look-Up Table)**: A small memory that stores the truth table of a logic function.
-    *   By changing the memory contents, you change the logic gate!
+    ### Field Programmable Gate Arrays (FPGAs)
+    
+    **Overview**: FPGAs are the pinnacle of reconfigurable hardware. Unlike PLDs, they contain thousands to millions of logic blocks.
+    
+    **Key Components:**
+    1.  **LUT (Look-Up Table)**: The atomic unit of an FPGA.
+        -   It's actually a small RAM (e.g., 16x1 bits for a 4-input LUT).
+        -   To implement a logic gate (AND, OR, XOR), we simply write its Truth Table into this RAM.
+        -   **Power**: Any n-input Boolean function can be implemented by a single n-input LUT.
+        
+    2.  **CLB (Configurable Logic Block)**:
+        -   Contains LUTs, Flip-Flops (for sequential logic), and Multiplexers.
+        
+    3.  **Routing Matrix**:
+        -   Programmable wires that connect CLBs together.
+        
+    **FPGA vs CPU vs ASIC:**
+    -   **CPU**: General purpose, executes instructions sequentially (Slowest).
+    -   **FPGA**: Parallel hardware execution, reconfigurable (Fast).
+    -   **ASIC**: Custom silicon chip, not reconfigurable (Fastest, most expensive).
+    
+    **Applications**:
+    -   AI/Machine Learning acceleration
+    -   High-frequency trading
+    -   Video processing
+    -   Prototyping new chips
     """
     
     if 'u5_ex12_ctx' not in st.session_state: st.session_state.u5_ex12_ctx = {}

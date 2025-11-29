@@ -10,12 +10,10 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
-
 # Apply Custom Styling
 apply_lab_style()
 
 # Sidebar Navigation
-st.sidebar.image("logo.png", use_container_width=True)
 st.sidebar.title("🔌 Digital Logic Lab")
 st.sidebar.markdown("---")
 
@@ -30,6 +28,15 @@ menu = st.sidebar.radio(
         "Unit 5: PLDs & Memory"
     ]
 )
+
+# Sidebar Footer
+st.sidebar.markdown("---")
+st.sidebar.caption("v1.0.0 | Virtual Digital Logic Lab")
+
+if st.sidebar.button("🗑️ Reset All Progress", help="Clear all experiment progress and start over"):
+    for key in list(st.session_state.keys()):
+        del st.session_state[key]
+    st.rerun()
 
 # Main Routing
 if menu == "Home":

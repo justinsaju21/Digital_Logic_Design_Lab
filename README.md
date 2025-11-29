@@ -64,7 +64,6 @@ streamlit run main.py
 
 - `streamlit` - Web application framework
 - `matplotlib` - Circuit visualization
-- `schemdraw` - Professional circuit diagrams
 - `graphviz` - State machine diagrams
 - `numpy`, `pandas` - Data processing
 
