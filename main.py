@@ -135,7 +135,7 @@ if menu == "Home":
     
     st.markdown("---")
 
-    # Unit Cards with Progress
+    # Unit Cards (Simplified - No Progress)
     st.markdown("""
     <h2 style='color: #60a5fa; margin-bottom: 2rem;'>📚 Course Curriculum</h2>
     """, unsafe_allow_html=True)
@@ -145,30 +145,27 @@ if menu == "Home":
     with col1:
         st.markdown(f"""
         <div class='lab-box' style='background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(37, 99, 235, 0.15) 100%); 
-                    border: 1px solid rgba(59, 130, 246, 0.3); transition: all 0.3s;'>
+                    border: 1px solid rgba(59, 130, 246, 0.3); transition: all 0.3s; height: 100%;'>
             <h3 style='color: #60a5fa; margin-top: 0;'>🔌 Unit 1: Basics</h3>
             <p style='color: #94a3b8; font-size: 0.95rem; line-height: 1.6;'>Logic Gates, Boolean Algebra, K-Map Minimization</p>
-            {get_unit_progress_html("Unit 1", "#60a5fa")}
         </div>
         """, unsafe_allow_html=True)
         
     with col2:
         st.markdown(f"""
         <div class='lab-box' style='background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(124, 58, 237, 0.15) 100%); 
-                    border: 1px solid rgba(139, 92, 246, 0.3); transition: all 0.3s;'>
+                    border: 1px solid rgba(139, 92, 246, 0.3); transition: all 0.3s; height: 100%;'>
             <h3 style='color: #a78bfa; margin-top: 0;'>⚙️ Unit 2: Combinational</h3>
             <p style='color: #94a3b8; font-size: 0.95rem; line-height: 1.6;'>Adders, Mux/Demux, Code Converters</p>
-            {get_unit_progress_html("Unit 2", "#a78bfa")}
         </div>
         """, unsafe_allow_html=True)
         
     with col3:
         st.markdown(f"""
         <div class='lab-box' style='background: linear-gradient(135deg, rgba(236, 72, 153, 0.15) 0%, rgba(219, 39, 119, 0.15) 100%); 
-                    border: 1px solid rgba(236, 72, 153, 0.3); transition: all 0.3s;'>
+                    border: 1px solid rgba(236, 72, 153, 0.3); transition: all 0.3s; height: 100%;'>
             <h3 style='color: #ec4899; margin-top: 0;'>🔄 Unit 3: Sequential</h3>
             <p style='color: #94a3b8; font-size: 0.95rem; line-height: 1.6;'>Flip-Flops, Shift Registers, Counters</p>
-            {get_unit_progress_html("Unit 3", "#ec4899")}
         </div>
         """, unsafe_allow_html=True)
         
@@ -178,20 +175,18 @@ if menu == "Home":
     with col4:
          st.markdown(f"""
         <div class='lab-box' style='background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(22, 163, 74, 0.15) 100%); 
-                    border: 1px solid rgba(34, 197, 94, 0.3); transition: all 0.3s;'>
+                    border: 1px solid rgba(34, 197, 94, 0.3); transition: all 0.3s; height: 100%;'>
             <h3 style='color: #22c55e; margin-top: 0;'>🧩 Unit 4: Advanced</h3>
             <p style='color: #94a3b8; font-size: 0.95rem; line-height: 1.6;'>FSM Design, State Machines, Real-world Controllers</p>
-            {get_unit_progress_html("Unit 4", "#22c55e")}
         </div>
         """, unsafe_allow_html=True)
          
     with col5:
          st.markdown(f"""
         <div class='lab-box' style='background: linear-gradient(135deg, rgba(251, 191, 36, 0.15) 0%, rgba(245, 158, 11, 0.15) 100%); 
-                    border: 1px solid rgba(251, 191, 36, 0.3); transition: all 0.3s;'>
+                    border: 1px solid rgba(251, 191, 36, 0.3); transition: all 0.3s; height: 100%;'>
             <h3 style='color: #f59e0b; margin-top: 0;'>💾 Unit 5: PLDs & Memory</h3>
             <p style='color: #94a3b8; font-size: 0.95rem; line-height: 1.6;'>PLA/PAL, FPGA Architecture, Programmable Logic</p>
-            {get_unit_progress_html("Unit 5", "#f59e0b")}
         </div>
         """, unsafe_allow_html=True)
     
@@ -262,6 +257,65 @@ elif menu == "My Progress":
     """, unsafe_allow_html=True)
     
     st.progress(progress)
+    
+    st.markdown("---")
+    st.markdown("### 📚 Unit Breakdown")
+    
+    # Unit Cards with Progress (Moved from Home)
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        st.markdown(f"""
+        <div class='lab-box' style='background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(37, 99, 235, 0.15) 100%); 
+                    border: 1px solid rgba(59, 130, 246, 0.3); transition: all 0.3s;'>
+            <h3 style='color: #60a5fa; margin-top: 0;'>🔌 Unit 1: Basics</h3>
+            <p style='color: #94a3b8; font-size: 0.95rem; line-height: 1.6;'>Logic Gates, Boolean Algebra, K-Map Minimization</p>
+            {get_unit_progress_html("Unit 1", "#60a5fa")}
+        </div>
+        """, unsafe_allow_html=True)
+        
+    with col2:
+        st.markdown(f"""
+        <div class='lab-box' style='background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(124, 58, 237, 0.15) 100%); 
+                    border: 1px solid rgba(139, 92, 246, 0.3); transition: all 0.3s;'>
+            <h3 style='color: #a78bfa; margin-top: 0;'>⚙️ Unit 2: Combinational</h3>
+            <p style='color: #94a3b8; font-size: 0.95rem; line-height: 1.6;'>Adders, Mux/Demux, Code Converters</p>
+            {get_unit_progress_html("Unit 2", "#a78bfa")}
+        </div>
+        """, unsafe_allow_html=True)
+        
+    with col3:
+        st.markdown(f"""
+        <div class='lab-box' style='background: linear-gradient(135deg, rgba(236, 72, 153, 0.15) 0%, rgba(219, 39, 119, 0.15) 100%); 
+                    border: 1px solid rgba(236, 72, 153, 0.3); transition: all 0.3s;'>
+            <h3 style='color: #ec4899; margin-top: 0;'>🔄 Unit 3: Sequential</h3>
+            <p style='color: #94a3b8; font-size: 0.95rem; line-height: 1.6;'>Flip-Flops, Shift Registers, Counters</p>
+            {get_unit_progress_html("Unit 3", "#ec4899")}
+        </div>
+        """, unsafe_allow_html=True)
+        
+    st.markdown("<br/>", unsafe_allow_html=True)
+    
+    col4, col5 = st.columns([1, 1])
+    with col4:
+         st.markdown(f"""
+        <div class='lab-box' style='background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(22, 163, 74, 0.15) 100%); 
+                    border: 1px solid rgba(34, 197, 94, 0.3); transition: all 0.3s;'>
+            <h3 style='color: #22c55e; margin-top: 0;'>🧩 Unit 4: Advanced</h3>
+            <p style='color: #94a3b8; font-size: 0.95rem; line-height: 1.6;'>FSM Design, State Machines, Real-world Controllers</p>
+            {get_unit_progress_html("Unit 4", "#22c55e")}
+        </div>
+        """, unsafe_allow_html=True)
+         
+    with col5:
+         st.markdown(f"""
+        <div class='lab-box' style='background: linear-gradient(135deg, rgba(251, 191, 36, 0.15) 0%, rgba(245, 158, 11, 0.15) 100%); 
+                    border: 1px solid rgba(251, 191, 36, 0.3); transition: all 0.3s;'>
+            <h3 style='color: #f59e0b; margin-top: 0;'>💾 Unit 5: PLDs & Memory</h3>
+            <p style='color: #94a3b8; font-size: 0.95rem; line-height: 1.6;'>PLA/PAL, FPGA Architecture, Programmable Logic</p>
+            {get_unit_progress_html("Unit 5", "#f59e0b")}
+        </div>
+        """, unsafe_allow_html=True)
     
     if progress == 1.0:
         st.balloons()
