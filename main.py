@@ -65,8 +65,8 @@ if menu == "Home":
     
     # Total steps for each experiment (must match tutor_config lengths)
     EXPERIMENT_STEPS = {
-        "u1_ex1": 12, "u1_ex2": 10,
-        "u2_ex3": 12, "u2_ex4": 10, "u2_ex5": 10,
+        "u1_ex1": 16, "u1_ex2": 10,
+        "u2_ex3": 13, "u2_ex4": 12, "u2_ex5": 10,
         "u3_ex6": 8,  "u3_ex7": 8,  "u3_ex8": 9,
         "u4_ex9": 10, "u4_ex10": 10,
         "u5_ex11": 10, "u5_ex12": 9
