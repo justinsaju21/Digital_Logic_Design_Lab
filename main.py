@@ -14,8 +14,8 @@ st.set_page_config(
 apply_lab_style()
 
 # Sidebar Navigation
-st.sidebar.image("logo.png", use_container_width=True)
-st.sidebar.title("🔌 Digital Logic Lab")
+st.sidebar.image("logo.png", width=120)
+st.sidebar.markdown("### 🔌 Digital Logic Lab")
 st.sidebar.markdown("---")
 
 menu = st.sidebar.radio(
