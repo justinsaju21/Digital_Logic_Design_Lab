@@ -222,8 +222,11 @@ def draw_seven_segment(value):
             
         ax.add_patch(rect)
         
+    # Add invisible point to force bbox to include top area
+    ax.plot([3], [10], color='none')
+        
     buf = io.BytesIO()
-    plt.savefig(buf, format='png', bbox_inches='tight', transparent=True, facecolor='none', dpi=100)
+    plt.savefig(buf, format='png', bbox_inches='tight', pad_inches=0.2, transparent=True, facecolor='none', dpi=100)
     buf.seek(0)
     plt.close(fig)
     return buf
