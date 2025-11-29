@@ -470,7 +470,7 @@ def run_experiment_5(tutor):
         },
         {
             "title": "Micro-Experiment 7: Digit NINE",
-            "instruction": "Set to **9**. All segments except 'e' and 'd' are lit.",
+            "instruction": "Set to **9**. All segments except 'e' are lit.",
             "criteria": lambda c: c.get('decimal') == 9,
             "success_msg": "✓ Nine displayed. Mirror image of 6 in some sense!",
         },
