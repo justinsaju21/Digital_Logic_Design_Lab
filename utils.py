@@ -435,6 +435,44 @@ def apply_lab_style():
         [data-testid="column"]:last-child {
             padding-right: 0;
         }
+        
+        /* Responsive Design for Mobile/Tablets */
+        @media (max-width: 768px) {
+            .main .block-container {
+                padding: 2rem 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem !important;
+            }
+            
+            h2 {
+                font-size: 1.5rem !important;
+                margin-top: 1.5rem !important;
+            }
+            
+            h3 {
+                font-size: 1.2rem !important;
+            }
+            
+            .lab-box {
+                padding: 1.25rem;
+            }
+            
+            [data-testid="stMetricValue"] {
+                font-size: 1.75rem;
+            }
+            
+            .circuit-container {
+                padding: 1rem;
+            }
+            
+            /* Stack columns on mobile */
+            [data-testid="column"] {
+                width: 100% !important;
+                margin-bottom: 1rem;
+            }
+        }
         </style>
     """, unsafe_allow_html=True)
 
