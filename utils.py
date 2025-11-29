@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit.components.v1 as components
 
 def apply_lab_style():
     """Applies a professional, modern dark theme with engineering aesthetics."""
@@ -525,16 +526,26 @@ def render_experiment_layout(title, theory_content, simulation_func, tutor=None,
     col_main, col_tutor = st.columns([3, 1])
     
     with col_main:
-        tab_sim, tab_theory = st.tabs(["🔬 Simulation", "📖 Theory"])
+        # Force scroll to top
+        components.html(
+            """
+            <script>
+                window.parent.document.querySelector('section.main').scrollTo(0, 0);
+            </script>
+            """, 
+            height=0
+        )
+
+        tab_theory, tab_sim = st.tabs(["📖 Theory", "🔬 Simulation"])
         
+        with tab_theory:
+            st.markdown(theory_content)
+            
         with tab_sim:
             # Capture the context returned by the simulation
             sim_context = simulation_func()
             if sim_context is not None:
                 tutor_context = sim_context
-            
-        with tab_theory:
-            st.markdown(theory_content)
             
     with col_tutor:
         if tutor:
