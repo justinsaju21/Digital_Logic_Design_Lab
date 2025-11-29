@@ -172,7 +172,34 @@ def apply_lab_style():
             border: 1px solid rgba(100, 200, 255, 0.2);
             border-radius: 10px;
             color: #e4e7eb;
-            padding: 0.625rem 1rem;
+        }
+
+        /* Fix for Selectbox Text Visibility */
+        div[data-baseweb="select"] > div {
+            color: #e4e7eb !important;
+            background-color: rgba(30, 41, 59, 0.8) !important;
+        }
+        
+        div[data-baseweb="select"] span {
+            color: #e4e7eb !important;
+        }
+        
+        /* Fix for Dropdown Menu Visibility */
+        div[data-baseweb="popover"] {
+            background-color: #1e293b !important;
+            border: 1px solid rgba(100, 200, 255, 0.2);
+        }
+        
+        div[data-baseweb="menu"] {
+            background-color: #1e293b !important;
+        }
+        
+        div[data-baseweb="menu"] div {
+            color: #e4e7eb !important;
+        }
+        
+        div[data-baseweb="menu"] li:hover {
+            background-color: rgba(59, 130, 246, 0.2) !important;
         }
         
         /* Number inputs */
