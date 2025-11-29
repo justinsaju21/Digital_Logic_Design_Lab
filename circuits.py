@@ -174,24 +174,24 @@ def draw_mux_4to1(d_inputs, select_lines):
 
 def draw_seven_segment(value):
     """
-    Draws a 7-segment display showing the decimal value.
+    Draws a realistic 7-segment display using hexagonal polygons.
     value: int (0-9)
     """
-    fig, ax = plt.subplots(figsize=(4, 7), facecolor='none')
-    ax.set_xlim(-1, 7)
-    ax.set_ylim(-1, 11)
+    fig, ax = plt.subplots(figsize=(4, 6.5), facecolor='none')
+    ax.set_xlim(-1, 13)
+    ax.set_ylim(-1, 21)
     ax.axis('off')
     
-    # Segment definitions (x, y, width, height) - simplified as rectangles
-    # A: Top, B: Top-Right, C: Bottom-Right, D: Bottom, E: Bottom-Left, F: Top-Left, G: Middle
+    # Define hexagonal segments for a realistic look
+    # Format: List of (x, y) tuples
     segments = {
-        'a': patches.Rectangle((1, 8), 4, 0.8, color='#334155'),
-        'b': patches.Rectangle((5, 5), 0.8, 3.8, color='#334155'),
-        'c': patches.Rectangle((5, 1), 0.8, 3.8, color='#334155'),
-        'd': patches.Rectangle((1, 0.2), 4, 0.8, color='#334155'),
-        'e': patches.Rectangle((0.2, 1), 0.8, 3.8, color='#334155'),
-        'f': patches.Rectangle((0.2, 5), 0.8, 3.8, color='#334155'),
-        'g': patches.Rectangle((1, 4.6), 4, 0.8, color='#334155')
+        'a': [(2, 18), (3, 19), (9, 19), (10, 18), (9, 17), (3, 17)],
+        'b': [(10, 18), (11, 17), (11, 10.5), (10, 9.5), (9, 10.5), (9, 17)],
+        'c': [(10, 9.5), (11, 8.5), (11, 2), (10, 1), (9, 2), (9, 8.5)],
+        'd': [(10, 1), (9, 0), (3, 0), (2, 1), (3, 2), (9, 2)],
+        'e': [(2, 9.5), (3, 8.5), (3, 2), (2, 1), (1, 2), (1, 8.5)],
+        'f': [(2, 18), (3, 17), (3, 10.5), (2, 9.5), (1, 10.5), (1, 17)],
+        'g': [(2, 9.5), (3, 10.5), (9, 10.5), (10, 9.5), (9, 8.5), (3, 8.5)]
     }
     
     # Map digits to segments
@@ -210,23 +210,24 @@ def draw_seven_segment(value):
     
     active_segments = digit_map.get(value, [])
     
-    for seg_name, rect in segments.items():
+    for seg_name, verts in segments.items():
         if seg_name in active_segments:
-            rect.set_color('#ef4444') # Red LED
-            rect.set_alpha(1.0)
-            # Add glow effect (simple stroke)
-            rect.set_linewidth(0)
+            color = '#ef4444' # Red LED
+            alpha = 1.0
+            lw = 0
         else:
-            rect.set_color('#1e293b') # Off state
-            rect.set_alpha(0.3)
+            color = '#1e293b' # Off state
+            alpha = 0.2
+            lw = 1
             
-        ax.add_patch(rect)
+        poly = patches.Polygon(verts, closed=True, facecolor=color, edgecolor=color, alpha=alpha, linewidth=lw)
+        ax.add_patch(poly)
         
     # Add invisible point to force bbox to include top area
-    ax.plot([3], [10], color='none')
+    ax.plot([6], [20.5], color='none')
         
     buf = io.BytesIO()
-    plt.savefig(buf, format='png', bbox_inches='tight', pad_inches=0.2, transparent=True, facecolor='none', dpi=100)
+    plt.savefig(buf, format='png', bbox_inches='tight', pad_inches=0.1, transparent=True, facecolor='none', dpi=100)
     buf.seek(0)
     plt.close(fig)
     return buf
