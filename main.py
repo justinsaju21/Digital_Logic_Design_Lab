@@ -14,7 +14,7 @@ st.set_page_config(
 apply_lab_style()
 
 # Sidebar Navigation
-st.sidebar.title("🔌 Digital Logic Lab")
+st.sidebar.markdown("### 🔌 Digital Logic Lab")
 st.sidebar.markdown("---")
 
 menu = st.sidebar.selectbox(
